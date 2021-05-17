@@ -1,15 +1,9 @@
-Step 0: Download project files                          DONE
+Step 7.1 Set up cookieRoutes file               DONE
+Step 7.2 Set up static middleware (1 line?)     DONE
+Step 7.3 Set up error handling file             ToDo
+Step 7.4 Set up error-handling code (in two
+         different files like 6 to start with)  ToDo
 
-Step 1: Initialise project (pug default)                DONE
-        and move in the project files
-Step 2: Install sequelize, sqlite3 and pug etc          DONE
+Step 8  Set up route-handling files             ToDo
 
-Step 3: Initialise the ORM with sequelize-cli           DONE
 
-Step 4: Create the Book model                           DONE
-
-Step 5: Test the DB connection                          DONE
-
-Step 6.1: Test the Book model with console.log          DONE
-
-Step 6.2: Display the Book model with res.json())       ToDo
