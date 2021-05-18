@@ -11,22 +11,9 @@ const cookieRouter = require('./routes/cookie.js');
 
 var app = express();
 // connection test
-const sequelize = require('./models/index.js').sequelize;
-const authenticate = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log(`Successfully authenticated ${sequelize.options.storage}`);
-  } catch (error) {
-    console.log(`Failed to authenticate: ${error.status}, ${error.message}`);
-  }
-  try {
-    await sequelize.sync({force:false});
-    console.log(`sync() performed`);
-  } catch (error) {
-    console.log(`Failed to sync: ${error.status}, ${error.message}`);
-  }
-}
-authenticate();
+const testConnection = require('./scripts/authenticate.js').testConnection;
+testConnection();
+
 // end connection test
 
 // view engine setup
@@ -42,9 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// test the non-404 error handler
+const errorRouter = require('./routes/errors.js');
+app.use('/error', errorRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  const message = `Sorry! It seems you're looking for ${req.url}, but this page does not exist.`
+  next(createError(404,message));
 });
 
 // error handler
