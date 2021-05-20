@@ -47,7 +47,12 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.locals.title = err.status === 404 ? 'Page not found' : 'AAARGH! Server Error...';
+  if (err.status === 404) {
+    res.render('not-found');
+  } else {
+    res.render('error');
+  }
 });
 
 module.exports = app;
