@@ -21,4 +21,4 @@ So: in error.pug:
 In not-found.pug:
  - set locals.title to be "Page not found"
  - set locals.message to be error.message
- - update the not-found message to reflect a book that isn't found - make the variables more general, IOW. 
+ - update the not-found message to reflect a book that isn't found - make the variables more general, IOW.
