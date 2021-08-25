@@ -17,7 +17,7 @@ router.get('/', async function(req, res, next) {
     }
     books.push(bookAttributes);
   })
-  locals.books = books;
+  locals.books = books; 
   locals.title = `Nick's wee sqlite app`;
   locals.subtitle = 'the Bookstore';
   res.render('index',locals);
