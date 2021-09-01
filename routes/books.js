@@ -3,9 +3,9 @@ var router = express.Router();
 const createError = require('http-errors');
 
 /* GET books listing. */
-router.get('/', async function(req, res, next) {
-  await res.send('"books" route working at a rudimentary level.');
-});
+// router.get('/', async function(req, res, next) {
+//   await res.send('"books" route working at a rudimentary level.');
+// });
 
 router.get('/new', async function(req,res,next) {
   await res.send('"books/new" route working at a rudimentary level.');

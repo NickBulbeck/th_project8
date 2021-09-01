@@ -1,6 +1,6 @@
 {
   "name": "project8",
-  "version": "0.0.0",
+  "version": "I have literally no idea",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www -e js,json,css,pug"
