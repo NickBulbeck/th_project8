@@ -8,7 +8,14 @@ const createError = require('http-errors');
 // });
 
 router.get('/new', async function(req,res,next) {
-  await res.send('"books/new" route working at a rudimentary level.');
+  let locals = {};
+  locals.title = "";
+  locals.author = "";
+  locals.year = "";
+  locals.genre = "";
+  locals.submitLabel = "Create book";
+  locals.heading = "Enter book details";
+  await res.render('new-update-book',locals);
 })
 
 router.get('/:id', async function(req,res,next) {
@@ -22,7 +29,14 @@ router.get('/:id', async function(req,res,next) {
   const allBooks = await Book.findAll(); // There's probably a shortcut for
   const total = allBooks.length;         // this!
   if (book) {
-    res.send(`"books/${id}" function working at a rudimentary level.`);
+    let locals = {};
+    locals.title = book.dataValues.title;
+    locals.author = book.dataValues.author;
+    locals.genre = book.dataValues.genre;
+    locals.year = book.dataValues.year;
+    locals.submitLabel = "Save changes";
+    locals.heading = `View or update details for '${locals.title}'`
+    res.render('new-update-book',locals);
   } else {
     const message = `It seems you were looking for book number ${id}; but there are only ${total} books.`;
     next(createError(404,message));
@@ -31,6 +45,7 @@ router.get('/:id', async function(req,res,next) {
 
 router.post('/new', async function(req,res,next) {
   await console.log("Posting the book to the database...");
+  // 
   res.redirect('/');
 })
 
