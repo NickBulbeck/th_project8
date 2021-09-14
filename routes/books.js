@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const bodyParser = require('body-parser');
 const createError = require('http-errors');
+
+router.use(bodyParser.urlencoded({extended:false}));
 
 /* GET books listing. */
 // router.get('/', async function(req, res, next) {
@@ -15,6 +18,7 @@ router.get('/new', async function(req,res,next) {
   locals.genre = "";
   locals.submitLabel = "Create book";
   locals.heading = "Enter book details";
+  locals.action = "/books/new";
   await res.render('new-update-book',locals);
 })
 
@@ -35,7 +39,8 @@ router.get('/:id', async function(req,res,next) {
     locals.genre = book.dataValues.genre;
     locals.year = book.dataValues.year;
     locals.submitLabel = "Save changes";
-    locals.heading = `View or update details for '${locals.title}'`
+    locals.heading = `View or update details for '${locals.title}'`;
+    locals.action = `/books/${book.dataValues.id}`;
     res.render('new-update-book',locals);
   } else {
     const message = `It seems you were looking for book number ${id}; but there are only ${total} books.`;
@@ -44,9 +49,14 @@ router.get('/:id', async function(req,res,next) {
 })
 
 router.post('/new', async function(req,res,next) {
-  await console.log("Posting the book to the database...");
-  // 
-  res.redirect('/');
+  const Book = require('../models').Book;
+  try {
+    const book = await Book.create(req.body);
+    res.redirect('/');
+  } catch(error) {
+    console.log(error.message, error.status);
+    next(createError(500,`Unable to process change: ${error.message}`));
+  } 
 })
 
 router.post('/:id/delete', async function(req,res,next) {
@@ -55,8 +65,18 @@ router.post('/:id/delete', async function(req,res,next) {
 })
 
 router.post('/:id', async function(req,res,next) {
-  await console.log("Updating book information");
-  res.redirect('/:id');
+  const id = req.params.id;
+  // it's req.body.title, .author, .genre, .year here.
+  const Book = require('../models').Book;
+  const book = await Book.findByPk(id);
+  console.log("In the post request middleware...");
+  try {
+    await book.update(req.body);
+    res.redirect('/');
+  } catch(error) {
+    console.log(error.message, ", ", error.status);
+    next(createError(500,`Unable to process change: ${error.message}`));
+  }
 })
 
 module.exports = router;

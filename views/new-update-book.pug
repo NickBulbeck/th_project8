@@ -2,19 +2,19 @@ extends layout
 
 block content
   h1= heading
-  form
+  form(method='post' action=`${action}`)
     p
       label(for='title') Title
-      input#title(name='title' type='text' value=`${title}`)
+      input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
     p
       label(for='author') Author
-      input#author(name='author' type='text' value=`${author}`)
+      input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
     p
       label(for='genre') Genre
-      input#genre(name='genre' type='text' value=`${genre}`)
+      input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
     p
       label(for='year') Year
-      input#year(name='year' type='text' value=`${year}`)
+      input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
     p
       input(type='submit' value=`${submitLabel}`)
     p
