@@ -19,15 +19,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Title cannot be left blank"
+          msg: "(input)Title cannot be left blank"
         }
       }
     },
     author: {
       type: DataTypes.STRING,
       validate: {
+        // bah:"whatever", // Un-comment to test the database error handling!
         notEmpty: {
-          msg: "Author cannot be left blank"
+          msg: "(input)Author cannot be left blank"
         }
       }
     },
@@ -38,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         is: {
           args: [/^[0-9]{0,4}$/],
-          msg: "Year is optional but cannot contain non-numeric characters or exceed 4 digits in length"
+          msg: "(input)Year cannot contain non-numeric characters or exceed 4 digits in length"
         }
       }
     }

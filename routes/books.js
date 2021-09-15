@@ -19,7 +19,7 @@ router.get('/new', async function(req,res,next) {
   locals.submitLabel = "Create book";
   locals.heading = "Enter book details";
   locals.action = "/books/new";
-  await res.render('new-update-book',locals);
+  res.render('new-update-book',locals);
 })
 
 router.get('/:id', async function(req,res,next) {
@@ -49,33 +49,63 @@ router.get('/:id', async function(req,res,next) {
 })
 
 router.post('/new', async function(req,res,next) {
+  const sortErrors = require('../scripts/saveErrors.js').sortErrors
   const Book = require('../models').Book;
   try {
     const book = await Book.create(req.body);
     res.redirect('/');
   } catch(error) {
-    console.log(error.message, error.status);
-    next(createError(500,`Unable to process change: ${error.message}`));
+    const errors = sortErrors(error.message);
+    if (errors.dbError) {
+      next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
+    } else {
+      const locals = {...req.body};
+      locals.errors = errors.inputErrors;
+      locals.submitLabel = "Create book";
+      locals.heading = "Enter book details";
+      locals.action = "/books/new";
+      res.render('new-update-book',locals);
+    }    
   } 
 })
 
 router.post('/:id/delete', async function(req,res,next) {
-  await console.log("Deleting the book");
-  res.redirect('/');
+  const Book = require('../models').Book;
+  try {
+    const book = await Book.findByPk(req.params.id);
+    await book.destroy();
+    res.redirect("/");
+  } catch(error) {
+    next(createError(500,`Unable to process change. /n${error.message}`));
+  }  
 })
 
 router.post('/:id', async function(req,res,next) {
   const id = req.params.id;
   // it's req.body.title, .author, .genre, .year here.
+  const sortErrors = require('../scripts/saveErrors.js').sortErrors
   const Book = require('../models').Book;
   const book = await Book.findByPk(id);
-  console.log("In the post request middleware...");
   try {
+    console.log("req: ", req.params.title, "book: ", book.dataValues.title);
     await book.update(req.body);
     res.redirect('/');
   } catch(error) {
-    console.log(error.message, ", ", error.status);
-    next(createError(500,`Unable to process change: ${error.message}`));
+    console.log(req.params.title);
+    const errors = sortErrors(error.message);
+    if (errors.dbError) {
+      next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
+    } else {
+      const locals = {...req.body};
+      locals.errors = errors.inputErrors;
+      locals.submitLabel = "Save changes";
+      locals.heading = `View or update details for '${locals.title}'`;
+      if (locals.title === "") {
+        locals.heading = "Very good... now put the title back.";
+      }
+      locals.action = `/books/${id}`;
+      res.render('new-update-book',locals);
+    }    
   }
 })
 

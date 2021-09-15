@@ -1,14 +1,17 @@
-Monday!
+Wednesday!
+  - Add validations to the /update route          DONE
+  - Find the "delete" syntax                      t
+  - Decide on the "are you sure" plon             t
+  - Add the extra <div> etc to new-update-book    t
+  - Round off the delete function                 t
 
- - Add placeholders to the new/edit forms         DONE
- - Add a variable (new/update) to the form action DONE
- - Add a "create new book" button to /            DONE    
- - Add mini-validations to the back end           DONE
- - Decide on DB errors vs validations             td
- - Tidy up the sending of validations to render   td
- - Add a conditional error div to the new page    td
- - Look up what the "save" function is...         DONE
- 
+  - Add search form to the index page             t
+  - Add /search route as app.use                  t
+  - Create search.js in scripts folder            t
+  
+  - Borrow pagination html fae project 2          t
+  - Add it to a pagination div                    t
+  - Look up how to add a pagination div...        t
+  - Create a script file and add it to static js  t
 
- Here's an idea; parse the DB error messages (which I create, after all) and if they're not
- expected, throw a bigger error but if they are, just pass them back to the edit page
+ TEMP DELETE!
