@@ -3,13 +3,14 @@
 // 
 // 
 // 
-const output = {
-  inputErrors : [],
-  dbErrors : [],
-  dbError : false
-}
+
 
 const sortErrors = (message) => {
+  const output = {
+    inputErrors : [],
+    dbErrors : [],
+    dbError : false
+  }  
   const messages = message.split(',');
   messages.forEach(message => {
     if (message.includes("(input)")) {

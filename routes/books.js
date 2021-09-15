@@ -87,11 +87,9 @@ router.post('/:id', async function(req,res,next) {
   const Book = require('../models').Book;
   const book = await Book.findByPk(id);
   try {
-    console.log("req: ", req.params.title, "book: ", book.dataValues.title);
     await book.update(req.body);
     res.redirect('/');
   } catch(error) {
-    console.log(req.params.title);
     const errors = sortErrors(error.message);
     if (errors.dbError) {
       next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
