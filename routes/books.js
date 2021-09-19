@@ -34,6 +34,7 @@ router.get('/:id', async function(req,res,next) {
   const total = allBooks.length;         // this!
   if (book) {
     let locals = {};
+    locals.id = book.dataValues.id;
     locals.title = book.dataValues.title;
     locals.author = book.dataValues.author;
     locals.genre = book.dataValues.genre;
@@ -72,8 +73,10 @@ router.post('/new', async function(req,res,next) {
 router.post('/:id/delete', async function(req,res,next) {
   const Book = require('../models').Book;
   try {
+    console.log(`In the delete method for id ${req.params.id}`);
     const book = await Book.findByPk(req.params.id);
     await book.destroy();
+    console.log(`${book.dataValues.title} deleted`);
     res.redirect("/");
   } catch(error) {
     next(createError(500,`Unable to process change. /n${error.message}`));

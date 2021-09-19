@@ -104,6 +104,7 @@ input[type=text] {
   height: 100%;
   background-color: #808080;
   opacity: 0.9;
+  z-index: 10;
 }
 
 .areYouSure {
@@ -116,5 +117,9 @@ input[type=text] {
   margin: 5% auto;
   border: 2px solid #01b189;
   border-radius: 8px;
-  opacity: 1;
+  z-index: 20;
+}
+
+.hidden {
+  display: none;
 }

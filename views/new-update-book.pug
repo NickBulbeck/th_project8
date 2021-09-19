@@ -23,4 +23,11 @@ block content
       input(type='submit' value=`${submitLabel}`)
     p
       a.button(href='/') Cancel
-  button(id='deleteButton') Remove this book fae the database
+  button#deleteButton(onclick='areYouSure()')= `Remove ${title} fae the database`
+  #areYouSureDiv.container.hidden
+    .areYouSure
+      p= `Are you sure you want to delete ${title}?`
+      button#erMaybeNot(onclick='no()') ... well, now that you mention it... no. CANCEL!!!
+      form(method='post' action=`/books/${id}/delete`)
+        input(type='submit' value=`Just do as you're told and DELETE it!`)
+      button#douglasAdamsButton(onclick='maxQuordleplean()') Douglas Adams button
