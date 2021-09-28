@@ -5,13 +5,10 @@ const createError = require('http-errors');
 
 router.use(bodyParser.urlencoded({extended:false}));
 
-/* GET books listing. */
-// router.get('/', async function(req, res, next) {
-//   await res.send('"books" route working at a rudimentary level.');
-// });
 
 router.get('/new', async function(req,res,next) {
   let locals = {};
+  locals.image = (Math.floor(Math.random() * 12) + 1);
   locals.title = "";
   locals.author = "";
   locals.year = "";
@@ -34,6 +31,7 @@ router.get('/:id', async function(req,res,next) {
   const total = allBooks.length;         // this!
   if (book) {
     let locals = {};
+    locals.image = (Math.floor(Math.random() * 12) + 1);
     locals.id = book.dataValues.id;
     locals.title = book.dataValues.title;
     locals.author = book.dataValues.author;
@@ -61,6 +59,7 @@ router.post('/new', async function(req,res,next) {
       next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
     } else {
       const locals = {...req.body};
+      locals.image = (Math.floor(Math.random() * 12) + 1);
       locals.errors = errors.inputErrors;
       locals.submitLabel = "Create book";
       locals.heading = "Enter book details";
@@ -79,7 +78,7 @@ router.post('/:id/delete', async function(req,res,next) {
     console.log(`${book.dataValues.title} deleted`);
     res.redirect("/");
   } catch(error) {
-    next(createError(500,`Unable to process change. /n${error.message}`));
+    next(createError(500,`Unable to process change. ${error.message}`));
   }  
 })
 
@@ -98,6 +97,7 @@ router.post('/:id', async function(req,res,next) {
       next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
     } else {
       const locals = {...req.body};
+      locals.image = (Math.floor(Math.random() * 12) + 1);
       locals.errors = errors.inputErrors;
       locals.submitLabel = "Save changes";
       locals.heading = `View or update details for '${locals.title}'`;

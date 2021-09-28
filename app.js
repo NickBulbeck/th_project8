@@ -7,6 +7,8 @@ var logger = require('morgan');
 // routes setup
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
+const searchRouter = require('./routes/search.js');
+
 const cookieRouter = require('./routes/cookie.js');
 
 var app = express();
@@ -29,6 +31,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
+app.use('/search', searchRouter);
 
 // test the non-404 error handler
 const errorRouter = require('./routes/errors.js');

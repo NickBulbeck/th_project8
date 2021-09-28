@@ -20,3 +20,15 @@ TEMP DELETE!
   - Solve the pagination problem BEFORE the search problem
   - Search feature: create an array of matching hingmies in front-end?
   - Advanced search: send a POST request and do it server-side?
+
+  - work out why     .background(style=`background-image: url('/static/images/${url}.jpg');`) is
+    removing the scroll bars
+
+ - Handle the pagination in the front end.
+ - Do the quick search in the back end.
+ - Have an 'onClick'-style event-listener which is set up via pug
+ - Then have the functions themselves in static js files
+ - In practice you'd only display search results, not the whole library.
+ - All searching happens in the back end, therefore.
+ - Need a wee div for results per page.
+ - Also need a decent database - 50 books or so.

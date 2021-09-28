@@ -4,7 +4,15 @@ block content
   h1= title
   p Welcome to #{subtitle}
   a.button(href='/books/new') Create a new entry...
-  table
+  include includes/search.pug
+  label(for='selectNumber') Employees per page
+  select#selectNumber(name='selectNumber')
+    option#option-11(value='11') 11
+    option#option-17(value='17') 17
+    option#option-23(value='23') 23
+    option#option-douglasAdams(value='douglasAdamsOption') Douglas Adams option
+
+  table#bookTable
     thead
       tr
         th Title

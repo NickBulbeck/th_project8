@@ -5,5 +5,7 @@ html
     link(rel='stylesheet', href='/static/stylesheets/normalise.css')
     link(rel='stylesheet', href='/static/stylesheets/style.css')
   body
-    block content
-  include includes/footer.pug
+    .background(style=`background-image: url('/static/images/${image}.jpg');`)
+      .wrapper
+        block content
+        include includes/footer.pug
