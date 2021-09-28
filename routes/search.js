@@ -2,13 +2,46 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
+const counter = require('../scripts/counter.js').counter();
 
 router.use(bodyParser.urlencoded({extended:false}));
 
-router.post('/quick',(req,res,next) => {
+router.post('/quick', async (req,res,next) => {
   const searchText = req.body.search;
   console.log(`Quick search route working: ${searchText}`);
-  res.redirect('/');
+  const Book = require('../models').Book;
+  const { Op } = require("sequelize");
+  const searchResults = await Book.findAll({
+    where: {
+      [Op.or]: [
+        { author: {
+          [Op.like] : `%${searchText}%`
+        } },
+        { title: {
+          [Op.like] : `%${searchText}%`
+        } },
+      ]
+    }
+  });
+  const locals = {};
+  const books = [];
+  searchResults.forEach( book => {
+    const bookAttributes = {};
+    for (attribute in book.dataValues) {
+      bookAttributes[attribute] = book.dataValues[attribute];
+    }
+    books.push(bookAttributes);
+  })
+  
+  // locals.image = (Math.floor(Math.random() * 12) + 1);
+  locals.image = counter();
+  locals.books = books; 
+  locals.title = `Nick's wee sqlite app`;
+  locals.subtitle = 'the Bookstore';
+  locals.jsFile = "index";
+  res.render('index',locals);
+
+  // res.redirect('/');
 });
 
 router.post('/advanced',(req,res,next) => {
