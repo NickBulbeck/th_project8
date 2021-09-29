@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const cookieParser = require('cookie-parser');
 
+const asyncHandler = (cb) => {
+  return async (req,res,next) => {
+    try {
+      await cb(req,res,next);
+    } catch(error) {
+      next(error);
+    }
+  }
+}
+
 router.use(cookieParser());
 
 // add in any specific functions here

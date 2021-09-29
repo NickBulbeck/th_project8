@@ -3,6 +3,16 @@ var router = express.Router();
 
 const counter = require('../scripts/counter.js').counter();
 
+const asyncHandler = (cb) => {
+  return async (req,res,next) => {
+    try {
+      await cb(req,res,next);
+    } catch(error) {
+      next(error);
+    }
+  }
+}
+
 router.get('/',(req,res) => {
   res.redirect('/books');
 } )
@@ -27,7 +37,7 @@ router.get('/books', async function(req, res, next) {
   locals.books = books; 
   locals.title = `Nick's wee sqlite app`;
   locals.subtitle = 'the Bookstore';
-  locals.jsFile = "index";
+  locals.jsFile = "homePage";
   res.render('index',locals);
   // res.json(locals);
 });

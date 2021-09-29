@@ -5,6 +5,15 @@ const createError = require('http-errors');
 
 router.use(bodyParser.urlencoded({extended:false}));
 
+const asyncHandler = (cb) => {
+  return async (req,res,next) => {
+    try {
+      await cb(req,res,next);
+    } catch(error) {
+      next(error);
+    }
+  }
+}
 
 router.get('/new', async function(req,res,next) {
   let locals = {};
