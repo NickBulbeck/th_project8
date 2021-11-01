@@ -1,24 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
 const createError = require('http-errors');
 const counter = require('../scripts/counter.js').counter();
 
-router.use(bodyParser.urlencoded({extended:false}));
 
-const asyncHandler = (cb) => {
-  return async (req,res,next) => {
-    try {
-      await cb(req,res,next);
-    } catch(error) {
-      next(error);
-    }
-  }
-}
+const asyncHandler = require('../scripts/asyncHandler').asyncHandler;
 
 router.post('/quick', async (req,res,next) => {
   const searchText = req.body.search;
-  console.log(`Quick search route working: ${searchText}`);
+  if (searchText === "") {
+    res.redirect('/'); 
+  }
   const Book = require('../models').Book;
   const { Op } = require("sequelize");
   const searchResults = await Book.findAll({
@@ -43,19 +35,18 @@ router.post('/quick', async (req,res,next) => {
     books.push(bookAttributes);
   })
   
-  // locals.image = (Math.floor(Math.random() * 12) + 1);
   locals.image = counter();
   locals.books = books; 
   locals.title = `Nick's wee sqlite app`;
   locals.subtitle = 'the Bookstore';
-  locals.jsFile = "homePage";
+  locals.jsFile = "indexPage";
   res.render('index',locals);
 
-  // res.redirect('/');
 });
 
 router.post('/advanced',(req,res,next) => {
   console.log("Advanced search route working");
+  console.log("This code shouldn't be here until you actually do something with it.");
   res.redirect('/');
 });
 

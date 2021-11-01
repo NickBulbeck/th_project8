@@ -8,7 +8,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
 const searchRouter = require('./routes/search.js');
-
 const cookieRouter = require('./routes/cookie.js');
 
 var app = express();
@@ -51,7 +50,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.locals.title = err.status === 404 ? 'Page not found' : 'AAARGH! Server Error...';
+  res.locals.title = err.status === 404 ? 'Page not found' : `AAARGH! Server Error... we're doomed! DOOMED, I TELL YOU!!`;
   if (err.status === 404) {
     res.render('not-found');
   } else {
