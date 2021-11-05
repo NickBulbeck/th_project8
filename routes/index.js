@@ -11,7 +11,8 @@ router.get('/',(req,res) => {
 
 
 /* GET home page. */
-router.get('/index', async function(req, res, next) {
+
+router.get('/index', asyncHandler(async (req,res) => {
   const Book = require('../models').Book;
   const DBbooks = await Book.findAll();
   const locals = {};
@@ -23,14 +24,14 @@ router.get('/index', async function(req, res, next) {
     }
     books.push(bookAttributes);
   })
-  // locals.image = (Math.floor(Math.random() * 12) + 1);
   locals.image = counter();
   locals.books = books; 
   locals.title = `Nick's wee sqlite app`;
   locals.subtitle = 'the Bookstore';
   locals.jsFile = "indexPage";
   res.render('index',locals);
-  // res.json(locals);
-});
+}));
+
+
 
 module.exports = router;

@@ -22,6 +22,12 @@ router.post('/quick', async (req,res,next) => {
         { title: {
           [Op.like] : `%${searchText}%`
         } },
+        { genre: {
+          [Op.like] : `%${searchText}%`
+        } },
+        { year: {
+          [Op.like] : `%${searchText}%`
+        } },
       ]
     }
   });

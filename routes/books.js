@@ -39,7 +39,6 @@ router.get('/:id', async function(req,res,next) {
     locals.jsFile = "updatePage";
     locals.heading = `View or update details for '${locals.title}'`;
     locals.action = `/books/${book.dataValues.id}`;
-    // res.render('new-update-book',locals);
     res.render('update-book',locals);
   } else {
     const message = `It seems you were looking for book number ${id}; but there are only ${total} books.`;
@@ -72,13 +71,11 @@ router.post('/new', async function(req,res,next) {
 router.post('/:id/delete', async function(req,res,next) {
   const Book = require('../models').Book;
   try {
-    console.log(`In the delete method for id ${req.params.id}`);
     const book = await Book.findByPk(req.params.id);
     await book.destroy();
-    console.log(`${book.dataValues.title} deleted`);
     res.redirect("/");
   } catch(error) {
-    next(createError(500,`Unable to process change. ${error.message}`));
+    next(createError(500,`Unable to delete. ${error.message}`));
   }  
 })
 
@@ -105,7 +102,7 @@ router.post('/:id', async function(req,res,next) {
         locals.heading = "Very good... now put the title back.";
       }
       locals.action = `/books/${id}`;
-      res.render('new-update-book',locals);
+      res.render('update-book',locals);
     }    
   }
 })

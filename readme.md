@@ -4,10 +4,9 @@ because it will go through there no matter what the route.
 
 FEATURES TO ADD
  - make the 'are-you-sure' div an include
- - asyncHandler function
+ - put a try/catch around all the database lookups
  - upgrade counter to use fs to count the number of image files (and rename it to imgCounter)
  - use a counter in all of the pages
- - use asyncHandler in all of the routes
  - add alt text to all the images
  - add a "no results" hingmy
  - create a border and background class for the headings and other text
