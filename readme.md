@@ -3,7 +3,6 @@ you can have app.use(cookieRoutes) with no '/route' as the first yin,
 because it will go through there no matter what the route. 
 
 FEATURES TO ADD
- - make the 'are-you-sure' div an include
  - upgrade counter to use fs to count the number of image files (and rename it to imgCounter)
  - use a counter in all of the pages
  - add alt text to all the images
