@@ -17,7 +17,11 @@ router.get('/new', async function(req,res,next) {
   res.render('new-book',locals);
 })
 
-router.get('/:id', async function(req,res,next) {
+// router.get('/index', asyncHandler(async (req,res) => {
+
+// }));
+
+router.get('/:id', asyncHandler(async (req,res,next) => {
   const id = req.params.id;
   if (isNaN(id)) {
     const message = `It seems you were looking for book number "${id}". The operative word here is "number".`;
@@ -44,9 +48,9 @@ router.get('/:id', async function(req,res,next) {
     const message = `It seems you were looking for book number ${id}; but there are only ${total} books.`;
     next(createError(404,message));
   }
-})
+}));
 
-router.post('/new', async function(req,res,next) {
+router.post('/new', asyncHandler (async (req,res,next) => {
   const sortErrors = require('../scripts/saveErrors.js').sortErrors
   const Book = require('../models').Book;
   try {
@@ -66,9 +70,9 @@ router.post('/new', async function(req,res,next) {
       res.render('new-book',locals);
     }    
   } 
-})
+}));
 
-router.post('/:id/delete', async function(req,res,next) {
+router.post('/:id/delete', asyncHandler( async (req,res,next) => {
   const Book = require('../models').Book;
   try {
     const book = await Book.findByPk(req.params.id);
@@ -77,9 +81,9 @@ router.post('/:id/delete', async function(req,res,next) {
   } catch(error) {
     next(createError(500,`Unable to delete. ${error.message}`));
   }  
-})
+}));
 
-router.post('/:id', async function(req,res,next) {
+router.post('/:id', asyncHandler( async (req,res,next) => {
   const id = req.params.id;
   // it's req.body.title, .author, .genre, .year here.
   const sortErrors = require('../scripts/saveErrors.js').sortErrors
@@ -105,6 +109,6 @@ router.post('/:id', async function(req,res,next) {
       res.render('update-book',locals);
     }    
   }
-})
+}));
 
 module.exports = router;
