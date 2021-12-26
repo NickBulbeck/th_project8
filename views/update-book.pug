@@ -7,28 +7,21 @@ block content
       h2.error Aaaaargh! We're temporarily doomed!
       each error in errors
         p.error= error
-    p
-      label(for='title') Title
-      input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
-    p
-      label(for='author') Author
-      input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
-    p
-      label(for='genre') Genre
-      input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
-    p
-      label(for='year') Year
-      input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
-    p
-      input(type='submit' value=`${submitLabel}`)
-    p
-      a.button(href='/') Return to main page
+    //- p
+    label(for='title') Title
+    input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
+    //- p
+    label(for='author') Author
+    input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
+    //- p
+    label(for='genre') Genre
+    input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
+    //- p
+    label(for='year') Year
+    input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
+    //- p
+    input(type='submit' value=`${submitLabel}`)
+    //- p
+    a.button(href='/') Return to main page
   button#deleteButton(onclick='areYouSure()')= `Remove ${title} fae the database`
   include includes/areYouSure.pug
-  //- #areYouSureDiv.container.hidden
-  //-   .areYouSure
-  //-     p= `Are you sure you want to delete ${title}?`
-  //-     button#erMaybeNot(onclick='no()') ... well, now that you mention it... no. CANCEL!!!
-  //-     form(method='post' action=`/books/${id}/delete`)
-  //-       input(type='submit' value=`Just do as you're told and DELETE it!`)
-  //-     button#douglasAdamsButton(onclick='maxQuordleplean()') Douglas Adams button

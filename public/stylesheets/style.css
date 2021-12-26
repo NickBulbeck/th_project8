@@ -40,6 +40,7 @@ input[type=submit] {
 
 p {
   margin: 20px auto;
+  display: inline-block;
 }
 
 ul {
@@ -52,6 +53,10 @@ ul {
 h2 {
   border-top: 2px solid #e7e7e7;
   padding-top: 20px;
+}
+
+h1,h2 {
+  text-align: center;
 }
 
 th {
@@ -79,18 +84,25 @@ label {
   transition: 0.4s;
 }
 
+p,h1,h2,label {
+  border: 2px solid #404040;
+  border-radius: 3px;
+  background-color: #e0e0e0;
+}
+
 input {
   padding: 10px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  border-radius: 2px;
-  border-color: #E7E7E7;
+  border: 2px solid #404040;
+  border-radius: 3px;
   transition: 0.4s;
 }
 
 input[type=text] {
-  margin-left: 7px;
   width: 300px;
+  border: 2px solid #404040;
+  border-radius: 3px;
 }
 
 .error {
@@ -152,7 +164,17 @@ input[type=text] {
 }
 
 label, select {
-  margin: 2px;
+  display: inline-block;
+  padding: 3px;
+}
+
+select {
+  width: 4rem;
+  margin-left: 5px;
+  text-align: center;
+  border: 2px solid #404040;
+  border-radius: 3px;
+  appearance: auto;
 }
 
 .search-submit:active, .search-submit:hover, .search-submit:focus {
@@ -221,3 +243,4 @@ tbody tr {
   border: 1px black solid;
   padding: 5px;
 }
+
