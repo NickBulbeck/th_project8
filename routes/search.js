@@ -32,6 +32,13 @@ router.post('/quick', async (req,res,next) => {
     }
   });
   const locals = {};
+  locals.image = counter();
+  locals.title = `Nick's wee sqlite app`;
+  locals.subtitle = 'the Bookstore';
+  locals.searchText = searchText;
+  if (searchResults.length === 0) {
+    res.render('emptySearch',locals);
+  }
   const books = [];
   searchResults.forEach( book => {
     const bookAttributes = {};
@@ -41,10 +48,7 @@ router.post('/quick', async (req,res,next) => {
     books.push(bookAttributes);
   })
   
-  locals.image = counter();
   locals.books = books; 
-  locals.title = `Nick's wee sqlite app`;
-  locals.subtitle = 'the Bookstore';
   locals.jsFile = "indexPage";
   res.render('index',locals);
 
