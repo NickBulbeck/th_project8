@@ -17,7 +17,7 @@ a {
 
 button, a.button, input[type=submit] {
   color: white;
-  background: #019875;
+  /* background: #019875; */
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   padding: 10px 14px 12px;
   font-size: 14px;
@@ -26,7 +26,7 @@ button, a.button, input[type=submit] {
 }
 
 form a.button, input[type=submit] {
-  margin-left: 140px;
+  margin-left: 0.5rem;
   transition: 0.4s;
 }
 
@@ -233,6 +233,18 @@ select {
   /* Feckin' specificity wars! */
 }
 
+.createButton {
+  background: blueviolet;
+  display: block;
+  width: 15rem;
+  text-align: center;
+}
+.searchButton {
+  background: darkblue;
+  border: 2px cyan solid;
+  border-radius: 2px;
+}
+
 table {
   opacity: 0.88;
   border-collapse: separate;
@@ -244,3 +256,7 @@ tbody tr {
   padding: 5px;
 }
 
+.bookProperty {
+  display:block;
+  width: 30rem;
+}

@@ -7,16 +7,16 @@ block content
       h2.error Aaaaargh! We're temporarily doomed!
       each error in errors
         p.error= error
-    p
+    p.bookProperty
       label(for='title') Title
       input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
-    p
+    p.bookProperty
       label(for='author') Author
       input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
-    p
+    p.bookProperty
       label(for='genre') Genre
       input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
-    p
+    p.bookProperty
       label(for='year') Year
       input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
     p
