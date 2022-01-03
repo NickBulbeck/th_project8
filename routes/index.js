@@ -8,14 +8,16 @@ const asyncHandler = require('../scripts/asyncHandler.js').asyncHandler;
 // Threw these two in for completeness
 router.get('/',(req,res) => {
   res.redirect('/index');
-} )
+});
 router.get('/home',(req,res) => {
   res.redirect('/index');
-}
-)
+});
+router.get('/index',(req,res) => {
+  res.redirect('/books');
+});
 /* GET home page. */
 
-router.get('/index', asyncHandler(async (req,res,next) => {
+router.get('/books', asyncHandler(async (req,res,next) => {
   const Book = require('../models').Book;
   const DBbooks = await Book.findAll();
   const locals = {};

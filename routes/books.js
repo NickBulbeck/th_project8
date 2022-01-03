@@ -24,7 +24,7 @@ router.get('/new', async function(req,res,next) {
 router.get('/:id', asyncHandler(async (req,res,next) => {
   const id = req.params.id;
   if (isNaN(id)) {
-    const message = `It seems you were looking for book number "${id}". The operative word here is "number".`;
+    const message = `It seems you were looking for book number "${id}". The operative word here is "number". You're welcome.`;
     next(createError(404,message));
   }
   const Book = require('../models').Book;
