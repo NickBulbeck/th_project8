@@ -3,16 +3,21 @@ var router = express.Router();
 const createError = require('http-errors');
 
 const asyncHandler = require('../scripts/asyncHandler').asyncHandler;
+const counter = require('../scripts/counter.js').counter();
 
 router.get('/new', async function(req,res,next) {
   let locals = {};
-  locals.image = (Math.floor(Math.random() * 12) + 1);
+  const imageNumber = counter();
+  locals.image = imageNumber;
+  const descriptions = require('../public/images/imageAlt.json').descriptions;
+  const imageAlt = descriptions[imageNumber]; 
+  locals.heading = `Nick's Wee Bookstore`;
+  locals.subtitle = `Welcome to the New Book page, whose background on this occasion is ${imageAlt}`;
   locals.title = "";
   locals.author = "";
   locals.year = "";
   locals.genre = "";
   locals.submitLabel = "Create book";
-  locals.heading = "Enter book details";
   locals.action = "/books/new";
   res.render('new-book',locals);
 })

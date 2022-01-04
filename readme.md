@@ -20,5 +20,6 @@ NEXT STEP
  - and re-name it imageCounter
 
 TEMP DELETE!
-  - work out why     .background(style=`background-image: url('/static/images/${url}.jpg');`) is
-    removing the scroll bars
+  - work out why...
+  -  .background(style=`background-image: url('/static/images/${url}.jpg')`)
+  - is removing the scroll bars

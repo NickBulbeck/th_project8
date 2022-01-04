@@ -10,7 +10,7 @@
 const counter = () => {
   let count = 0;
   return function () {
-    if (count < 12) {
+    if (count < 13) {
       count++;
     } else {
       count = 1;

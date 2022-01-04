@@ -29,10 +29,13 @@ router.get('/books', asyncHandler(async (req,res,next) => {
     }
     books.push(bookAttributes);
   })
-  locals.image = counter();
+  const imageNumber = counter();
+  locals.image = imageNumber;
+  const descriptions = require('../public/images/imageAlt.json').descriptions;
+  const imageAlt = descriptions[imageNumber]; 
   locals.books = books; 
-  locals.title = `Nick's wee sqlite app`;
-  locals.subtitle = 'the Bookstore';
+  locals.heading = `Nick's Wee Bookstore`;
+  locals.subtitle = `Welcome to the home page, whose background on this occasion is ${imageAlt}`;
   locals.jsFile = "indexPage";
   res.render('index',locals);
 }));

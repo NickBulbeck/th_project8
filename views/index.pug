@@ -1,8 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{subtitle}
+  h2= subtitle
   a.button.createButton(href='/books/new') Create a new entry...
   include includes/search.pug
   label(for='selectNumber') Employees per page
