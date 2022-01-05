@@ -36,7 +36,7 @@ const appendPaginationLinks = () => {
   linkDiv.innerHTML = `
       <ul id="linkUl">
       </ul>`
-  document.getElementById('wrapper')
+  document.getElementById('bookstore')
           .appendChild(linkDiv);
   const pages = pageData().pages;
   for (i=1; i<=pages; i++) {
@@ -68,4 +68,16 @@ if (pageData().bookArray.length > 0) {
   console.log("No search results!");
 }
 
-
+const toggleHighlands = () => {
+  const bookstore = document.getElementById("bookstore");
+  const toggleSpan = document.getElementById("toggleText");
+  const showBookstore = " to re-display the Bookstore.";
+  const hideBookstore = " to hide the Bookstore and admire the Scottish Highlands."
+  if (toggleText.textContent.includes("hide")) {
+    toggleSpan.textContent = showBookstore;
+    bookstore.classList.add("transparent");
+  } else {
+    toggleSpan.textContent = hideBookstore;
+    bookstore.classList.remove("transparent");
+  }
+}

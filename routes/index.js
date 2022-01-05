@@ -35,7 +35,7 @@ router.get('/books', asyncHandler(async (req,res,next) => {
   const imageAlt = descriptions[imageNumber]; 
   locals.books = books; 
   locals.heading = `Nick's Wee Bookstore`;
-  locals.subtitle = `Welcome to the home page, whose background on this occasion is ${imageAlt}`;
+  locals.subtitle = `Welcome to the home page, whose background on this occasion is ${imageAlt}. Click `;
   locals.jsFile = "indexPage";
   res.render('index',locals);
 }));

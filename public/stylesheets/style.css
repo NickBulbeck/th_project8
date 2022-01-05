@@ -137,6 +137,9 @@ input[type=text] {
 .hidden {
   display: none;
 }
+.transparent {
+  opacity: 0;
+}
 
 .search-input {
   padding: 0.4rem 1rem;

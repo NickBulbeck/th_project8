@@ -2,30 +2,33 @@ extends layout
 
 block content
   h2= subtitle
-  a.button.createButton(href='/books/new') Create a new entry...
-  include includes/search.pug
-  label(for='selectNumber') Employees per page
-  select#selectNumber(name='selectNumber')
-    option#option-5(value='5') 5
-    option#option-7(value='7') 7
-    option#option-11(value='11') 11
-    option#option-13(value='13') 13
-    option#option-17(value='17') 17
-    option#option-23(value='23') 23
-    option#option-douglasAdams(value='douglasAdamsOption') Douglas Adams option
-  table#bookTable
-    thead
-      tr
-        th Title
-        th Author
-        th Genre
-        th Year
-    tbody
-      each book in books
-        tr.book
-          td
-            a(href=`/books/${book.id}`) #{book.title}
-          td #{book.author}
-          td #{book.genre}
-          td #{book.year}
+    a(onclick='toggleHighlands()') here
+    span#toggleText  to hide the Bookstore and admire the Scottish Highlands.
+  div#bookstore
+    a.button.createButton(href='/books/new') Create a new entry...
+    include includes/search.pug
+    label(for='selectNumber') Employees per page
+    select#selectNumber(name='selectNumber')
+      option#option-5(value='5') 5
+      option#option-7(value='7') 7
+      option#option-11(value='11') 11
+      option#option-13(value='13') 13
+      option#option-17(value='17') 17
+      option#option-23(value='23') 23
+      option#option-douglasAdams(value='douglasAdamsOption') Douglas Adams option
+    table#bookTable
+      thead
+        tr
+          th Title
+          th Author
+          th Genre
+          th Year
+      tbody
+        each book in books
+          tr.book
+            td
+              a(href=`/books/${book.id}`) #{book.title}
+            td #{book.author}
+            td #{book.genre}
+            td #{book.year}
 
