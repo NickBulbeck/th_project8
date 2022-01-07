@@ -39,9 +39,6 @@ router.post('/quick', async (req,res,next) => {
   locals.heading = `Nick's Wee Bookstore`;
   locals.subtitle = `Below is a list of all books matching the search text '${searchText}'. The background is ${imageAlt}. Click `;
   locals.colourScheme = 'home';
-  if (searchResults.length === 0) {
-    res.render('emptySearch',locals);
-  }
   const books = [];
   searchResults.forEach( book => {
     const bookAttributes = {};
@@ -52,7 +49,14 @@ router.post('/quick', async (req,res,next) => {
   })
   locals.books = books; 
   locals.jsFile = "indexPage";
-  res.render('index',locals);
+  if (searchResults.length === 0) {
+    locals.colourScheme = 'search';
+    locals.subtitle = `Regrettably, there were no books matching the search text '${searchText}'.
+                       Instead, you can admire the background, which is ${imageAlt}.`;
+    res.render('emptySearch',locals);
+  } else {
+    res.render('index',locals);
+  }
 });
 
 router.post('/advanced',(req,res,next) => {

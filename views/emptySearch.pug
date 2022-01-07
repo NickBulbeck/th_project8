@@ -1,7 +1,5 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{subtitle}
-  p Regrettably, there were no books matching the search text "#{searchText}"
-  a.button(href='/') Return to the home page
+  p.searchColours= subtitle
+  a.button.searchButton.centered(href='/') Return to the home page

@@ -1,2 +1,3 @@
-if jsFile
-  script(src=`/static/js/${jsFile}.js`)
+if jsFiles
+  each jsFile in jsFiles
+    script(src=`/static/js/${jsFile}.js`)

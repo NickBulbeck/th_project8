@@ -12,13 +12,15 @@ router.get('/new', async function(req,res,next) {
   const descriptions = require('../public/images/imageAlt.json').descriptions;
   const imageAlt = descriptions[imageNumber]; 
   locals.heading = `Nick's Wee Bookstore`;
-  locals.subtitle = `Welcome to the New Book page, whose background on this occasion is ${imageAlt}`;
+  locals.subtitle = `To create a new book, enter the relevant details below. The background image here is ${imageAlt}. Click `;
+  locals.colourScheme = `new`;
   locals.title = "";
   locals.author = "";
   locals.year = "";
   locals.genre = "";
   locals.submitLabel = "Create book";
   locals.action = "/books/new";
+  locals.jsFiles = ["toggleHighlands"];
   res.render('new-book',locals);
 })
 

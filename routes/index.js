@@ -37,7 +37,7 @@ router.get('/books', asyncHandler(async (req,res,next) => {
   locals.books = books; 
   locals.heading = `Nick's Wee Bookstore`;
   locals.subtitle = `Welcome to the home page, whose background on this occasion is ${imageAlt}. Click `;
-  locals.jsFile = "indexPage";
+  locals.jsFiles = ["indexPage","toggleHighlands"];
   res.render('index',locals);
 }));
 

@@ -1,25 +1,28 @@
 extends layout
 
 block content
-  h2= subtitle
-  form(method='post' action=`${action}`)
-    if errors
-      h2.error Aaaaargh! We're temporarily doomed!
-      each error in errors
-        p.error= error
-    p.bookProperty
-      label(for='title') Enter title:
-      input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
-    p.bookProperty
-      label(for='author') Enter name of author:
-      input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
-    p.bookProperty
-      label(for='genre') Enter genre:
-      input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
-    p.bookProperty
-      label(for='year') Enter year of publication:
-      input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
-    p
-      input(type='submit' value=`${submitLabel}`)
-    p
-      a.button(href='/') Cancel
+  h2.newColours= subtitle
+    a(onclick='toggleHighlands()') here
+    span#toggleText  to hide the input fields and admire the Scottish Highlands.
+  div#bookstore
+    form(method='post' action=`${action}`)
+      if errors
+        h2.error Aaaaargh! We're temporarily doomed!
+        each error in errors
+          p.error= error
+      p.bookProperty
+        label(for='title') Enter title:
+        input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
+      p.bookProperty
+        label(for='author') Enter name of author:
+        input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
+      p.bookProperty
+        label(for='genre') Enter genre:
+        input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
+      p.bookProperty
+        label(for='year') Enter year of publication:
+        input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
+      p
+        input(type='submit' value=`${submitLabel}`)
+      p
+        a.button(href='/') Cancel
