@@ -1,17 +1,17 @@
 extends layout
 
 block content
-  h2= subtitle
+  h2.homeColours= subtitle
     a(onclick='toggleHighlands()') here
     span#toggleText  to hide the Bookstore and admire the Scottish Highlands.
   div#bookstore
     a.button.createButton(href='/books/new') Create a new entry...
     include includes/search.pug
-    label(for='selectNumber') Employees per page
-    select#selectNumber(name='selectNumber')
+    label(for='selectNumber' class='homeColours' id='perPageLabel') Employees per page
+    select#selectNumber(name='selectNumber' class='homeColours')
       option#option-5(value='5') 5
       option#option-7(value='7') 7
-      option#option-11(value='11') 11
+      option#option-11(value='11' selected='true') 11
       option#option-13(value='13') 13
       option#option-17(value='17') 17
       option#option-23(value='23') 23

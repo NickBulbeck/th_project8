@@ -33,6 +33,7 @@ router.get('/books', asyncHandler(async (req,res,next) => {
   locals.image = imageNumber;
   const descriptions = require('../public/images/imageAlt.json').descriptions;
   const imageAlt = descriptions[imageNumber]; 
+  locals.colourScheme = `home`;
   locals.books = books; 
   locals.heading = `Nick's Wee Bookstore`;
   locals.subtitle = `Welcome to the home page, whose background on this occasion is ${imageAlt}. Click `;

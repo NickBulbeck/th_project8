@@ -1,3 +1,17 @@
+:root {
+  --home-light: #e0e0e0;
+  --home-dark: #404040;
+  --new-light: #10c219;
+  --new-dark: #044e08;
+  --update-light: #f1a312;
+  --update-dark: #644305;
+  --delete-light: #f03030;
+  --delete-dark: #6b0505;
+  --active-dark: blueViolet;
+  --search-dark: rgb(10, 10, 128);
+  --search-light: rgb(144, 204, 224);
+}
+
 body {
   padding: 0;
   font: 18px "Garamond", serif;
@@ -19,20 +33,21 @@ button, a.button, input[type=submit] {
   color: white;
   /* background: #019875; */
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding: 10px 14px 12px;
-  font-size: 14px;
-  border-radius: 2px;
+  padding: 5px;
+  font-size: 1.7rem;
+  border: 3px solid;
+  border-radius: 6px;
   cursor: pointer;
 }
 
+
 form a.button, input[type=submit] {
-  margin-left: 0.5rem;
-  transition: 0.4s;
+  transition: none;
 }
 
-input[type=submit] {
+/* input[type=submit] {
   border: 0;
-}
+} */
 
   a.button:hover, input[type=submit]:hover {
     background-color: #01b189;
@@ -48,6 +63,12 @@ ul {
   list-style-type: none;
   margin-bottom: 10px;
   line-height: 1.3em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  max-width: 50%;
+  margin: auto;
 }
 
 h2 {
@@ -87,9 +108,8 @@ label {
 }
 
 p,h1,h2,label {
-  border: 2px solid #404040;
-  border-radius: 3px;
-  background-color: #e0e0e0;
+  border: 3px solid;
+  border-radius: 6px;
 }
 
 input {
@@ -143,30 +163,23 @@ input[type=text] {
 
 .search-input {
   padding: 0.4rem 1rem;
-  border: 1px solid rgba(200, 200, 200, 0.9);
-  border-radius: 0.25rem 0 0 0.25rem ;
+  height: 3rem;
+  /* border: 1px solid rgba(200, 200, 200, 0.9);
+  border-radius: 0.25rem 0 0 0.25rem ; */
   max-width: 20rem;
   transition: .4s ease-out;
   outline: none;
   margin: 2px;
   display: inline;
+  border: 2px solid;
+  border-radius: 6px;
+  border-color: var(--home-dark) !important;
 }
 
-.search-input:active, .search-input:hover, .search-input:focus {
+/* .search-input:active, .search-input:hover, .search-input:focus {
   border: 1px solid rgba(50, 50, 50, 0.9);
-}
+} */
 
-.search-submit {
-  cursor: pointer;
-  height: 33px;
-  background: rgba(245, 245, 245, 0.9);
-  border-radius: 0 0.25rem 0.25rem 0;
-  border: 1px solid rgba(200, 200, 200, 0.9);
-  transition: .4s ease-out;
-  outline: none;
-  margin: 2px 24px 2px 2px;
-  display: inline;
-}
 
 label, select {
   display: inline-block;
@@ -175,11 +188,17 @@ label, select {
 
 select {
   width: 4rem;
-  margin-left: 5px;
+  margin-left: 2px;
+  margin-bottom: 0;
   text-align: center;
-  border: 2px solid #404040;
-  border-radius: 3px;
+  border: 3px solid;
+  border-radius: 6px;
   appearance: auto;
+  height: 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: relative; /* Don't ask. */
+  top: -0px;          /* No, really - don't. */
 }
 
 .search-submit:active, .search-submit:hover, .search-submit:focus {
@@ -210,12 +229,6 @@ select {
   text-align : center;
 }
 
-/* #linkUl {
-  width: 4rem;
-  margin: 0.5rem auto;
-  align-content: center;
-} */
-
 .linkDiv li {
   display: inline;
 }
@@ -239,15 +252,30 @@ select {
 }
 
 .createButton {
-  background: blueviolet;
+  color: var(--new-dark) !important;
+  background-color: var(--new-light);
+  border-color: var(--new-dark) !important;
   display: block;
-  width: 15rem;
+  width: 20rem;
   text-align: center;
+  margin: 1.5rem auto;
 }
+
 .searchButton {
-  background: darkblue;
-  border: 2px cyan solid;
-  border-radius: 2px;
+  color: var(--search-light) !important;
+  background-color: var(--search-dark);
+  border-color: var(--search-light) !important;
+  display: inline;
+  cursor:pointer;
+  height:3rem;
+  margin-left: 2px;
+  margin-bottom: -3px;
+  padding: none;
+  text-align: center;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 1.7rem;
+  position: relative;
+  top: 4px;
 }
 
 table {
@@ -265,3 +293,46 @@ tbody tr {
   display:block;
   width: 30rem;
 }
+
+.homeColours {
+  background-color: var(--home-light);
+  border-color: var(--home-dark);
+  color: var(--home-dark);
+}
+
+.newColours {
+  background-color: var(--new-light);
+  border-color: var(--new-dark);
+  color: var(--new-dark);
+}
+
+.updateColours {
+  background-color: var(--update-light);
+  border-color: var(--update-dark);
+  color: var(--update-dark);
+}
+
+.deleteColours {
+  background-color: var(--delete-light);
+  border-color: var(--delete-dark);
+  color: var(--delete-dark);
+}
+
+.searchForm {
+  width: 27rem;
+  margin: 1rem auto;
+}
+
+::placeholder {
+  color: var(--home-dark) !important;
+}
+
+#perPageLabel {
+  height: 3rem;
+  font-size: 1.5rem;
+  padding: 0 8px;
+}
+
+/* .search-container {
+  position: relative;
+} */

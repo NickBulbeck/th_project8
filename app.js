@@ -32,7 +32,7 @@ app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/search', searchRouter);
 
-// test the non-404 error handler
+// dummy route to test the non-404 error handler
 const errorRouter = require('./routes/errors.js');
 app.use('/error', errorRouter);
 

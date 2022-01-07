@@ -32,10 +32,13 @@ router.post('/quick', async (req,res,next) => {
     }
   });
   const locals = {};
-  locals.image = counter();
-  locals.title = `Nick's wee sqlite app`;
-  locals.subtitle = 'the Bookstore';
-  locals.searchText = searchText;
+  const imageNumber = counter()
+  locals.image = imageNumber;
+  const descriptions = require('../public/images/imageAlt.json').descriptions;
+  const imageAlt = descriptions[imageNumber];
+  locals.heading = `Nick's Wee Bookstore`;
+  locals.subtitle = `Below is a list of all books matching the search text '${searchText}'. The background is ${imageAlt}. Click `;
+  locals.colourScheme = 'home';
   if (searchResults.length === 0) {
     res.render('emptySearch',locals);
   }
@@ -47,11 +50,9 @@ router.post('/quick', async (req,res,next) => {
     }
     books.push(bookAttributes);
   })
-  
   locals.books = books; 
   locals.jsFile = "indexPage";
   res.render('index',locals);
-
 });
 
 router.post('/advanced',(req,res,next) => {
