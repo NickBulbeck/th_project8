@@ -7,22 +7,21 @@ block content
   div#bookstore
     form(method='post' action=`${action}`)
       if errors
-        h2.error Aaaaargh! We're temporarily doomed!
         each error in errors
-          p.error= error
+          p.error.centre= error
       p.bookProperty
-        label(for='title') Enter title:
+        label(for='title' class='newColours') Enter title:
         input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
       p.bookProperty
-        label(for='author') Enter name of author:
+        label(for='author' class='newColours') Enter name of author:
         input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
       p.bookProperty
-        label(for='genre') Enter genre:
+        label(for='genre' class='newColours') Enter genre:
         input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
       p.bookProperty
-        label(for='year') Enter year of publication:
+        label(for='year' class='newColours') Enter year of publication:
         input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
-      p
-        input(type='submit' value=`${submitLabel}`)
-      p
-        a.button(href='/') Cancel
+      p.bookProperty.centre
+        input(type='submit' value=`${submitLabel}` class='newColours')
+      p.bookProperty.centre
+        a.button.homeColours(href='/') Cancel and return to home page

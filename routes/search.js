@@ -48,7 +48,7 @@ router.post('/quick', async (req,res,next) => {
     books.push(bookAttributes);
   })
   locals.books = books; 
-  locals.jsFile = "indexPage";
+  locals.jsFiles = ["indexPage","toggleHighlands"];
   if (searchResults.length === 0) {
     locals.colourScheme = 'search';
     locals.subtitle = `Regrettably, there were no books matching the search text '${searchText}'.

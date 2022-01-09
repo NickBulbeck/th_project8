@@ -24,10 +24,6 @@ router.get('/new', async function(req,res,next) {
   res.render('new-book',locals);
 })
 
-// router.get('/index', asyncHandler(async (req,res) => {
-
-// }));
-
 router.get('/:id', asyncHandler(async (req,res,next) => {
   const id = req.params.id;
   if (isNaN(id)) {
@@ -69,11 +65,19 @@ router.post('/new', asyncHandler (async (req,res,next) => {
       next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
     } else {
       const locals = {...req.body};
-      locals.image = (Math.floor(Math.random() * 12) + 1);
+      const imageNumber = counter();
+      locals.image = imageNumber;
+      const descriptions = require('../public/images/imageAlt.json').descriptions;
+      const imageAlt = descriptions[imageNumber]; 
+      locals.subtitle = `The background image here is ${imageAlt}. Click `;
+      locals.colourScheme = `new`;
       locals.errors = errors.inputErrors;
+      const errorNoun = errors.inputErrors.length === 1 ? "error" : "errors";
       locals.submitLabel = "Create book";
-      locals.heading = "Enter book details";
+      locals.heading = "Re-check book details...";
       locals.action = "/books/new";
+      locals.jsFiles = ["toggleHighlands"];
+      locals.subtitle = `Please note the ${errorNoun} below. The new background image, BTW, is ${imageAlt}. Click `;
       res.render('new-book',locals);
     }    
   } 

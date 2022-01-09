@@ -11,6 +11,7 @@
   --active-light: rgb(201, 103, 231);
   --search-dark: rgb(10, 10, 128);
   --search-light: rgb(144, 204, 224);
+  --placeholder: #909090;
 }
 
 body {
@@ -108,7 +109,9 @@ label {
   font-weight: bold;
   min-width: 130px;
   display: inline-block;
-  transition: 0.4s;
+  font-size: 1rem;
+  padding-left: 5px;
+  padding-right: 7px;
 }
 
 p,h1,h2,label {
@@ -132,7 +135,11 @@ input[type=text] {
 }
 
 .error {
-  color: rgb(236, 15, 15);
+  background-color: rgb(236, 15, 15) !important;
+  color: #000000;
+  border-color: #000000 !important;
+  width: 20rem;
+  text-align: center;
 }
 .container {
   position: fixed;
@@ -191,10 +198,10 @@ input[type=text] {
 
 label, select {
   display: inline-block;
-  padding: 3px;
 }
 
 select {
+  padding: 5px;
   width: 4rem;
   margin-left: 2px;
   margin-bottom: 0;
@@ -205,8 +212,8 @@ select {
   height: 3rem;
   font-size: 1.5rem;
   font-weight: bold;
-  position: relative; /* Don't ask. */
-  top: -0px;          /* No, really - don't. */
+  position: relative; /* Don't ask.                */
+  top: -0px;          /* No, really - don't.       */
 }
 
 .search-submit:active, .search-submit:hover, .search-submit:focus {
@@ -299,14 +306,15 @@ tbody tr {
 }
 
 .bookProperty {
-  display:block;
-  width: 30rem;
+  display: block;
+  width: 20rem;
+  border: none;
 }
 
 .homeColours {
-  background-color: var(--home-light);
-  border-color: var(--home-dark);
-  color: var(--home-dark);
+  background-color: var(--home-light) !important;
+  border-color: var(--home-dark) !important;
+  color: var(--home-dark) !important;
 }
 
 .searchColours {
@@ -339,7 +347,7 @@ tbody tr {
 }
 
 ::placeholder { 
-  color: var(--home-dark) !important;
+  color: var(--placeholder) !important;
   font-size: 1.2rem;
   font-weight: lighter;
 }
@@ -354,4 +362,11 @@ tbody tr {
   display: block;
   width: 30rem;
   margin: auto;
+}
+
+.centre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 200px; */
 }
