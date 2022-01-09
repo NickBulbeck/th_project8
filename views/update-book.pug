@@ -1,27 +1,29 @@
 extends layout
 
 block content
-  h2= heading
-  form(method='post' action=`${action}`)
-    if errors
-      h2.error Aaaaargh! We're temporarily doomed!
-      each error in errors
-        p.error= error
-    //- p
-    label(for='title') Title
-    input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
-    //- p
-    label(for='author') Author
-    input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
-    //- p
-    label(for='genre') Genre
-    input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
-    //- p
-    label(for='year') Year
-    input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
-    //- p
-    input(type='submit' value=`${submitLabel}`)
-    //- p
-    a.button(href='/') Return to main page
-  button#deleteButton(onclick='areYouSure()')= `Remove ${title} fae the database`
+  h2.updateColours= subtitle
+    a(onclick='toggleHighlands()') here
+    span#toggleText  to hide the input fields and admire the Scottish Highlands.
+  div#bookstore
+    button#deleteButton.deleteColours.centre(onclick='areYouSure()')= `Remove ${title} fae the database`
+    form(method='post' action=`${action}`)
+      if errors
+        each error in errors
+          p.error.centre= error
+      p.bookProperty
+        label(for='title' class='updateColours') Enter title:
+        input#title(name='title' type='text' value=`${title}` placeholder='Mandatory field')
+      p.bookProperty
+        label(for='author' class='updateColours') Enter name of author:
+        input#author(name='author' type='text' value=`${author}` placeholder='Mandatory field')
+      p.bookProperty
+        label(for='genre' class='updateColours') Enter genre:
+        input#genre(name='genre' type='text' value=`${genre}` placeholder='Optional field')
+      p.bookProperty
+        label(for='year' class='updateColours') Enter year of publication:
+        input#year(name='year' type='text' value=`${year}` placeholder='Optional field - numbers only')
+      p.bookProperty.centre
+        input(type='submit' value=`${submitLabel}` class='updateColours')
+      p.bookProperty.centre
+        a.button.homeColours(href='/') Cancel and return to home page
   include includes/areYouSure.pug

@@ -368,5 +368,9 @@ tbody tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 200px; */
+}
+
+#deleteButton {
+  width: 30rem;
+  margin: auto;
 }

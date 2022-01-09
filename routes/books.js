@@ -36,14 +36,20 @@ router.get('/:id', asyncHandler(async (req,res,next) => {
   const total = allBooks.length;         // this!
   if (book) {
     let locals = {};
-    locals.image = (Math.floor(Math.random() * 12) + 1);
+    const imageNumber = counter();
+    locals.image = imageNumber;
+    const descriptions = require('../public/images/imageAlt.json').descriptions;
+    const imageAlt = descriptions[imageNumber]; 
+    locals.colourScheme = `new`;
     locals.id = book.dataValues.id;
     locals.title = book.dataValues.title;
     locals.author = book.dataValues.author;
     locals.genre = book.dataValues.genre;
     locals.year = book.dataValues.year;
     locals.submitLabel = "Save changes";
-    locals.jsFile = "updatePage";
+    locals.colourScheme = `update`;
+    locals.jsFiles = ["updatePage","toggleHighlands"];
+    locals.subtitle = `To update '${locals.title}', edit the relevant details below. The background image here is ${imageAlt}. Click `;
     locals.heading = `View or update details for '${locals.title}'`;
     locals.action = `/books/${book.dataValues.id}`;
     res.render('update-book',locals);
@@ -109,10 +115,19 @@ router.post('/:id', asyncHandler( async (req,res,next) => {
       next(createError(500,`An error occurred with the database. ${errors.dbErrors}`));
     } else {
       const locals = {...req.body};
-      locals.image = (Math.floor(Math.random() * 12) + 1);
+      locals.colourScheme = `update`;
+      const imageNumber = counter();
+      locals.image = imageNumber;
+      const descriptions = require('../public/images/imageAlt.json').descriptions;
+      const imageAlt = descriptions[imageNumber]; 
+      locals.subtitle = `The background image here is ${imageAlt}. Click `;
+      locals.jsFiles = ["toggleHighlands"];
+      const errorNoun = errors.inputErrors.length === 1 ? "error" : "errors";
+      const errorVerb = errorNoun === "error" ? "was an" : "were";
+      locals.subtitle = `Please note the ${errorNoun} below. The new background image, BTW, is ${imageAlt}. Click `;
       locals.errors = errors.inputErrors;
       locals.submitLabel = "Save changes";
-      locals.heading = `View or update details for '${locals.title}'`;
+      locals.heading = `There ${errorVerb} ${errorNoun} updating '${locals.title}'`;
       if (locals.title === "") {
         locals.heading = "Very good... now put the title back.";
       }
