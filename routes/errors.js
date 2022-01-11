@@ -5,6 +5,7 @@ const createError = require('http-errors');
 /* GET error test url */
 router.get('/', (req,res,next) => {
   const error = new Error("Testing the basic '/error' route...");
+  error.status = 500;
   next(error);
 });
 

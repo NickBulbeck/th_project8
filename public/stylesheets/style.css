@@ -12,6 +12,8 @@
   --search-dark: rgb(10, 10, 128);
   --search-light: rgb(144, 204, 224);
   --placeholder: #909090;
+  --error-light: #d2b48c;
+  --error-dark: #8b4513;
 }
 
 body {
@@ -42,6 +44,9 @@ button, a.button, input[type=submit] {
   cursor: pointer;
 }
 
+span {
+  display: inline;
+}
 
 form a.button, input[type=submit] {
   transition: none;
@@ -292,6 +297,8 @@ select {
   position: relative;
   top: 3px;
   font-weight: bold;
+  position: relative; 
+  top: 4px;        
 }
 
 table {
@@ -341,6 +348,12 @@ tbody tr {
   color: var(--delete-dark);
 }
 
+.errorColours {
+  background-color: var(--error-light);
+  border-color: var(--error-dark);
+  color: var(--error-dark);
+}
+
 .searchForm {
   width: 28rem;
   margin: 1rem auto;
@@ -370,7 +383,18 @@ tbody tr {
   align-items: center;
 }
 
+.errorHome {
+  width: 10rem;
+  margin: auto;
+}
+
 #deleteButton {
   width: 30rem;
   margin: auto;
+}
+
+#redirect {
+  width: 6rem;
+  font-weight: bold;
+  font-size: 1.6rem;
 }

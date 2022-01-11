@@ -38,23 +38,26 @@ app.use('/error', errorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const message = `Sorry! It seems you're looking for ${req.url}, but this page does not exist.`
+  const message = `Hmm. It seems you're looking for ${req.url}, but this page does not exist.`
   next(createError(404,message));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
+  const locals = {};
+  locals.message = `Error status ${err.status}: ${err.message}`;
+  locals.status = err.status || 500;
+  locals.image = err.status === 404 ? 7 : 11; // Ochils or Ladhar Bheinn
+  locals.error = req.app.get('env') === 'development' ? err : {}; // Not used yet , so probably
+  locals.colourScheme = 'error';                                  // shouldnae be here!
+  locals.heading = err.status === 404 ? 'Page not found' : `AAARGH! Server Error... we're doomed! DOOMED, I TELL YOU!!`;
   res.status(err.status || 500);
-  res.locals.title = err.status === 404 ? 'Page not found' : `AAARGH! Server Error... we're doomed! DOOMED, I TELL YOU!!`;
+  locals.jsFiles = ["redirect"];
   if (err.status === 404) {
-    res.render('not-found');
+    res.render('not-found',locals);
   } else {
-    res.render('error');
+    res.render('error',locals);
   }
 });
 

@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h2= message
-  p= `You'll be redirected to the home page in 20 seconds...`
+  h2.searchColours #{message}.
+  p.errorColours.centre It's probably our bad. Click the "Home" button to return to the home page (or wait to be redirected there). Meanwhile, here's a view across Barrisdale Bay towards Ladhar Bheinn ("Larven") to make up for it.
+  a.errorHome.button.homeColours.centre(href='/') Home 
+  p#redirect.errorColours.centre 15

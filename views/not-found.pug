@@ -1,8 +1,7 @@
 extends layout
 
 block content
-  h2= message
-  p= `...at least, not on this site. (That doesn't mean that it can't be real for YOU.)`
-  br
-  p
-    a.button(href='/') Home  
+  h2.searchColours Yup; it's a 404 error.
+  p.errorColours.centre Click the "Home" button to return to the home page (or wait to be redirected there). Meanwhile, here's a winter scene from the Ochil Hills to reflect the bleakness and desoloation of the 404 error.
+  a.errorHome.button.homeColours.centre(href='/') Home 
+  p#redirect.errorColours.centre 15
