@@ -11,15 +11,15 @@ router.get('/', (req,res,next) => {
 
 
 router.get('/:status', (req, res, next) => {
-    const stat = req.params.status;
-    console.log("Input status: ", stat);
-  if (stat) {
-    next(createError(stat,`${stat}-type bother has arisen in a strange manner...`));
-  } else {
-    // Not sure how execution would actually reach here... hence the status
-    next(createError(666,"Bother has arisen in a VERY strange manner..."));
-  }
-
+  const stat = parseInt(req.params.status);
+  const error = new Error(`${stat}-type bother has arisen in a strange manner...`);
+  try {
+    error.status = 500;
+  } catch {
+    error.status = 666;
+    error.message = "Bother has arisen in a VERY strange manner..."
+  };
+  next(error);
 });
 
 module.exports = router;

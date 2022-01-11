@@ -165,7 +165,7 @@ input[type=text] {
   background-color: #000;
   color: #e0e0e0;
   margin: 5% auto;
-  border: 2px solid #01b189;
+  border: 2px solid #000;
   border-radius: 8px;
   z-index: 20;
 }
@@ -343,9 +343,9 @@ tbody tr {
 }
 
 .deleteColours {
-  background-color: var(--delete-light);
-  border-color: var(--delete-dark);
-  color: var(--delete-dark);
+  background-color: var(--delete-light) !important;
+  border-color: var(--delete-dark) !important;
+  color: var(--delete-dark) !important;
 }
 
 .errorColours {
@@ -378,9 +378,9 @@ tbody tr {
 }
 
 .centre {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .errorHome {
@@ -397,4 +397,26 @@ tbody tr {
   width: 6rem;
   font-weight: bold;
   font-size: 1.6rem;
+}
+
+#erMaybeNot {
+  width: 20rem;
+  margin: 1rem auto;
+}
+
+#douglasAdamsButton {
+  width: 20rem;
+  margin: 1rem auto;
+}
+
+#areYouSure {
+  border-color: #000;
+  font-size: 1.8rem;
+  text-align: center;
+  width: 80%
+}
+
+.yesDelete {
+  width: 15rem;
+  margin: auto;
 }

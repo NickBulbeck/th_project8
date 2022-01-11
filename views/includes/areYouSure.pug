@@ -1,7 +1,7 @@
 #areYouSureDiv.container.hidden
   .areYouSure
-    p= `Are you sure you want to delete ${title}?`
-    button#erMaybeNot(onclick='no()') ... well, now that you mention it... no. CANCEL!!!
+    p#areYouSure.centre= `Are you sure you want to delete ${title}?`
+    button#erMaybeNot.homeColours.centre(onclick='no()') Er... maybe not. CANCEL
     form(method='post' action=`/books/${id}/delete`)
-      input(type='submit' value=`Just do as you're told and DELETE it!`)
-    button#douglasAdamsButton(onclick='maxQuordleplean()') Douglas Adams button
+      input(type='submit' value=`Yes: Delete it` class="deleteColours yesDelete centre")
+    button#douglasAdamsButton.centre(onclick='maxQuordleplean()') Douglas Adams button
